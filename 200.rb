@@ -26,14 +26,14 @@ class Words
             if input.chomp == 'done'
                 puts "Done? - you wrote [#{@wc} words]"
                 puts @words.join("\n").chomp
-                filename = get_title + '.txt.'
+                filename = get_title + '.txt'
                 puts "Writing #{filename} to file"
                 File.write(filename, @words.join("\n").chomp)
                 exit
             elsif input.chomp == ''
                 get_input(["\n"])
             else
-                words.push = input.chomp
+                words.push(input.chomp)
                 new_words = words[-1].split(' ').size
                 puts "WC: #{@wc += new_words}"
                 input = ''
