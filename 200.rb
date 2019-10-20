@@ -51,6 +51,19 @@ class Words
         exit
     end
 
+    def set_access_rights()
+        puts "1. Private or 2. Protected (1 / 2)"
+        response = gets.chomp
+        if response == "1"
+            return "private"
+        elsif response == "2"
+            return "protected"
+        else
+            return "public"
+        end
+    end
+
+
     def post()
         puts "WE'RE IN POST"
         # First, let's ensure we have all the form-field values we need
@@ -59,8 +72,8 @@ class Words
         posturl="https://200wordsaday.com/api/texts?api_key=" + api_key
         
         title = @title
-        content = @words.join("\n")
-        access_rights = "private"
+        content = @words.join("")
+        access_rights = set_access_rights()
         status = "draft"
         puts "API_KEY: " + api_key
         puts "URL: " + posturl
@@ -71,7 +84,7 @@ class Words
         puts "status: " + status
         
         body_str = "title=#{title}&categories[]=%23ok&categories[]=%23test&content=#{content}&status=draft"
-        http = Curl.post(posturl, {:title => title, :content => content, :access_rights => "private"})
+        http = Curl.post(posturl, {:title => title, :content => content, :access_rights => access_rights})
         puts http.body_str
 
         system("open", "https://200wordsaday.com/me/words")
