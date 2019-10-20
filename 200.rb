@@ -26,7 +26,7 @@ class Words
             if input.chomp == 'done'
                 puts "Done? - you wrote [#{@wc} words]"
                 
-                filename = get_title + '.txt'
+                filename = get_title + '.md'
                 puts "Writing #{filename} to file"
                 File.write(filename, @words.join(""))
                 puts @words
