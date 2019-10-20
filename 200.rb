@@ -1,6 +1,5 @@
 #! /usr/bin/env ruby
-require 'date'
-puts DateTime.now()
+
 class Words
     attr_accessor :wc, :words
 
@@ -20,27 +19,27 @@ class Words
             puts "Give your writing a title:"
             return gets.chomp
         end
-        def get_input(words)
-            @words += words
+        
+        def get_input(words=[])
+            @words + words
             input = gets
             if input.chomp == 'done'
                 puts "Done? - you wrote [#{@wc} words]"
-                puts @words.join("\n").chomp
+                
                 filename = get_title + '.txt'
                 puts "Writing #{filename} to file"
-                File.write(filename, @words.join("\n").chomp)
+                File.write(filename, @words.join(""))
+                puts @words
                 exit
-            elsif input.chomp == ''
-                get_input(["\n"])
             else
-                words.push(input.chomp)
-                new_words = words[-1].split(' ').size
+                @words.push(input)
+                new_words = @words[-1].split(' ').size
                 puts "WC: #{@wc += new_words}"
                 input = ''
-                get_input(words)
+                get_input()
             end
         end
-        get_input(words)
+        get_input()
     end
 
     def quit()
@@ -54,7 +53,6 @@ end
 words = Words.new
 puts "Welcome to 200 Words a Day"
 puts
-puts "Ready to get started?"
-gets.chomp[0].downcase == 'y' ? words.write() : words.quit()
-
+puts "Hit Enter to WRITE!"
+gets.chomp == '' ? words.write() : words.quit()
 
