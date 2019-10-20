@@ -54,7 +54,7 @@ class Words
     def post()
         puts "WE'RE IN POST"
         # First, let's ensure we have all the form-field values we need
-        api_key="2fe18c3c0a190a0c57d5f61787122cc2"
+        api_key = ENV["api_key_200wad"]
         posturl="https://200wordsaday.com/api/texts?api_key=" + api_key
         
         title = @title
