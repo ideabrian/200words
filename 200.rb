@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 require 'curb'
-
+require './environment'
 class Words
     attr_accessor :wc, :words
 
@@ -33,8 +33,8 @@ class Words
                 puts "Writing #{filename} to file"
                 File.write(filename, @words.join(""))
                 puts @words
+                puts "#{filename} has been written.\n"
                 post()
-                exit
             else
                 @words.push(input)
                 new_words = @words[-1].split(' ').size
@@ -65,10 +65,17 @@ class Words
 
 
     def post()
-        puts "WE'RE IN POST"
+        puts "Would you like to POST to 200 words?"
+        puts "type n to cancel or ENTER to POST"
+        if gets.downcase.chomp == 'n'
+            puts "\n\nOkay. Bye!"
+            exit
+        end
+        
+        puts "\nWE'RE IN POST\n"
         # First, let's ensure we have all the form-field values we need
-
-        api_key = ENV["api_key_200wad"]
+        
+        api_key = ENV['api_key_200']
         posturl="https://200wordsaday.com/api/texts?api_key=" + api_key
         
         title = @title
@@ -98,4 +105,3 @@ puts "Welcome to 200 Words a Day"
 puts
 puts "Hit Enter to WRITE!"
 gets.chomp == '' ? words.write() : words.quit()
-
