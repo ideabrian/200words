@@ -1,7 +1,10 @@
-Okay, it's almost 10:00 pm on a Saturday. The question is, have I written yet today? I think I was up late, and wrote in the early morning.
-Did I?
+# 200 Words A Day - a place to write
+This repo is open source MIT license.
 
-Well, let's see what it takes to write 200 words from the command line. Then, we'll push to github pages.
-Figuring out how to write a blog is paramount.
-# Blog
-I just used some markdown - so let's ~see~ if that works or *not*
+This little ruby script allows you to post to your 200wordsaday.com/ account using the API.
+
+You'll need:
+
+1. A [200wordsaday.com](https://200wordsaday.com) account  *Free*
+2. Ruby on your machine -- likely this only works on Mac OS right now.
+3. Ability to install gems via the command line.
